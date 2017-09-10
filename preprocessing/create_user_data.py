@@ -40,11 +40,11 @@ def parse_user(x):
     return series
 
 if __name__ == '__main__':
-    orders = pd.read_csv('../data/raw/orders.csv')
-    prior_products = pd.read_csv('../data/raw/order_products__prior.csv')
-    train_products = pd.read_csv('../data/raw/order_products__train.csv')
+    orders = pd.read_csv('~/Downloads/orders.csv')
+    prior_products = pd.read_csv('~/Downloads/order_products_prior.csv')
+    train_products = pd.read_csv('~/Downloads/order_products_train.csv')
     order_products = pd.concat([prior_products, train_products], axis=0)
-    products = pd.read_csv('../data/raw/products.csv')
+    products = pd.read_csv('~/Downloads/products.csv')
 
     df = orders.merge(order_products, how='left', on='order_id')
     df = df.merge(products, how='left', on='product_id')
@@ -52,8 +52,8 @@ if __name__ == '__main__':
     null_cols = ['product_id', 'aisle_id', 'department_id', 'add_to_cart_order', 'reordered']
     df[null_cols] = df[null_cols].fillna(0).astype(int)
 
-    if not os.path.isdir('../data/processed'):
-        os.makedirs('../data/processed')
+    if not os.path.isdir('~/Downloads'):
+        os.makedirs('~/Downloads')
 
     user_data = df.groupby('user_id', sort=False).apply(parse_user).reset_index()
-    user_data.to_csv('../data/processed/user_data.csv', index=False)
+    user_data.to_csv('~/Downloads/user_data.csv', index=False)
