@@ -4,9 +4,9 @@ import pandas as pd
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('../data/processed/user_data.csv')
+    df = pd.read_csv('~/Downloads/user_data.csv')
 
-    products = pd.read_csv('../data/raw/products.csv')
+    products = pd.read_csv('~/Downloads/products.csv')
     product_to_aisle = dict(zip(products['product_id'], products['aisle_id']))
     product_to_department = dict(zip(products['product_id'], products['department_id']))
     product_to_name = dict(zip(products['product_id'], products['product_name']))
