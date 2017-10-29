@@ -68,11 +68,11 @@ if __name__ == '__main__':
 
             prior_products = set()
             for order in orders:
-                is_ordered.append(str(int(product_id in order)))
-                index_in_order.append(str(order.index(product_id) + 1) if product_id in order else '0')
-                order_size.append(str(len(order)))
-                reorder_size.append(str(len(prior_products & set(order))))
-                prior_products |= set(order)
+                is_ordered.append(str(int(product_id in order)))#查看每个产品是否在每个order里面
+                index_in_order.append(str(order.index(product_id) + 1) if product_id in order else '0')#在order里面，显示序号
+                order_size.append(str(len(order)))# 显示该order的大小
+                reorder_size.append(str(len(prior_products & set(order))))# reorder size显示的是该订单里面reorder的比例
+                prior_products |= set(order)# 将该订单和原来的订单多并集
 
             is_ordered = ' '.join(is_ordered)
             index_in_order = ' '.join(index_in_order)
@@ -102,10 +102,10 @@ if __name__ == '__main__':
         order_size = []
         reorder_size = []
 
-        for reorder in reorders:
-            is_ordered.append(str(int(max(reorder) == 0)))
-            index_in_order.append(str(0))
-            order_size.append(str(len(reorder)))
+        for reorder in reorders:#单纯的对每个user的reorder记录进行分析。
+            is_ordered.append(str(int(max(reorder) == 0)))#是否是reorder
+            index_in_order.append(str(0))# 不懂
+            order_size.append(str(len(reorder))) # 订单的大小
             reorder_size.append(str(sum(reorder)))
 
         is_ordered = ' '.join(is_ordered)
