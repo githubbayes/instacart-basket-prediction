@@ -25,7 +25,7 @@ def make_word_idx(product_names):
             word_idx[word] = max_id
             max_id += 1
 
-    return word_idx
+    return word_idx # 给word做序号
 
 
 def encode_text(text, word_idx):
